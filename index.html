@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InosifyDev — Inovasi Digital, Solusi Nyata</title>
+<meta name="description" content="InosifyDev membantu UMKM, mahasiswa, dan bisnis membangun website serta aplikasi mobile yang modern, efektif, dan mudah digunakan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2455D6;
+    --blue-deep:#173E9E;
+    --gold:#FBB82E;
+    --navy:#0C1B3A;
+    --navy-soft:#4A5670;
+    --white:#FFFFFF;
+    --mist:#F4F7FE;
+    --line:#E4E9F5;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --maxw:1180px;
+    --shadow: 0 20px 50px -20px rgba(23,62,158,0.25);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--navy);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Manrope',sans-serif;
+    margin:0;
+    color:var(--navy);
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;line-height:1.65;color:var(--navy-soft);}
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  ul{list-style:none;margin:0;padding:0;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  @media(min-width:900px){.wrap{padding:0 40px;}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:600;color:var(--blue);
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";width:7px;height:7px;border-radius:50%;
+    background:var(--gold);
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:15px 28px;border-radius:100px;
+    font-weight:600;font-size:15px;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--blue);color:var(--white);
+    box-shadow:0 14px 30px -10px rgba(36,85,214,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px -8px rgba(36,85,214,0.6);}
+  .btn-ghost{
+    background:var(--white);color:var(--navy);
+    border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+  .btn-gold{
+    background:var(--gold);color:var(--navy);
+    box-shadow:0 14px 30px -10px rgba(251,184,46,0.6);
+  }
+  .btn-gold:hover{transform:translateY(-2px);}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;
+  }
+  .logo .mark{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--blue),var(--blue-deep));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white);font-size:16px;font-weight:800;
+    box-shadow:0 8px 16px -6px rgba(36,85,214,0.6);
+  }
+  .logo .mark span{color:var(--gold);}
+  nav.menu{display:none;align-items:center;gap:36px;}
+  nav.menu a{
+    font-size:14.5px;font-weight:500;color:var(--navy-soft);
+    position:relative;transition:color .2s ease;
+  }
+  nav.menu a:hover{color:var(--navy);}
+  nav.menu a::after{
+    content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;
+    background:var(--gold);transition:width .25s ease;
+  }
+  nav.menu a:hover::after{width:100%;}
+  .nav-cta{display:none;}
+  .burger{
+    width:40px;height:40px;border-radius:10px;background:var(--mist);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  }
+  .burger span{width:18px;height:2px;background:var(--navy);border-radius:2px;}
+  @media(min-width:960px){
+    nav.menu{display:flex;}
+    .nav-cta{display:inline-flex;}
+    .burger{display:none;}
+  }
+
+  .mobile-menu{
+    display:none;flex-direction:column;gap:2px;
+    padding:6px 24px 24px;border-bottom:1px solid var(--line);background:var(--white);
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:13px 4px;font-weight:500;color:var(--navy);border-bottom:1px solid var(--line);}
+  .mobile-menu a:last-of-type{border-bottom:none;}
+  .mobile-menu .btn{margin-top:14px;width:100%;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px 0 60px;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;top:-160px;right:-160px;width:520px;height:520px;
+    background:radial-gradient(circle,rgba(36,85,214,0.14),transparent 70%);
+    z-index:0;
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;gap:44px;
+  }
+  @media(min-width:960px){
+    .hero-grid{grid-template-columns:1.05fr 0.95fr;align-items:center;gap:40px;}
+  }
+  .hero h1{
+    font-size:38px;line-height:1.12;font-weight:800;
+  }
+  @media(min-width:600px){.hero h1{font-size:48px;}}
+  @media(min-width:1100px){.hero h1{font-size:56px;}}
+  .hero p.lead{
+    margin-top:20px;font-size:16.5px;max-width:480px;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+  .hero-stats{
+    display:flex;gap:28px;margin-top:44px;flex-wrap:wrap;
+  }
+  .hero-stats div b{display:block;font-family:'Manrope';font-size:24px;font-weight:800;color:var(--navy);}
+  .hero-stats div span{font-size:13px;color:var(--navy-soft);}
+
+  /* device mockup */
+  .device-scene{position:relative;height:400px;}
+  @media(min-width:600px){.device-scene{height:460px;}}
+  .laptop{
+    position:absolute;left:0;bottom:20px;width:78%;max-width:420px;
+    border-radius:16px 16px 4px 4px;background:var(--navy);padding:10px 10px 22px;
+    box-shadow:var(--shadow);
+  }
+  .laptop .screen{
+    border-radius:8px;overflow:hidden;aspect-ratio:16/10;
+    background:linear-gradient(160deg,var(--blue) 0%, var(--blue-deep) 55%, #10265f 100%);
+    position:relative;padding:16px;
+  }
+  .laptop .screen .bar{height:9px;border-radius:6px;background:rgba(255,255,255,0.25);margin-bottom:8px;}
+  .laptop .screen .bar.short{width:55%;background:var(--gold);}
+  .laptop .screen .bar.w1{width:85%;}
+  .laptop .screen .bar.w2{width:70%;}
+  .laptop .screen .chip{
+    margin-top:14px;display:flex;gap:8px;
+  }
+  .laptop .screen .chip i{
+    flex:1;height:46px;border-radius:8px;background:rgba(255,255,255,0.14);
+  }
+  .laptop .base{height:8px;background:#0a1730;border-radius:0 0 6px 6px;margin-top:6px;}
+
+  .phone{
+    position:absolute;right:6%;bottom:0;width:132px;
+    border-radius:26px;background:var(--navy);padding:8px;
+    box-shadow:var(--shadow);
+  }
+  @media(min-width:600px){.phone{width:150px;}}
+  .phone .screen{
+    border-radius:18px;aspect-ratio:9/18.5;
+    background:linear-gradient(200deg,var(--white),#EEF3FF 60%, var(--white));
+    padding:16px 12px;position:relative;overflow:hidden;
+  }
+  .phone .screen .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:44%;height:16px;background:var(--navy);border-radius:0 0 10px 10px;}
+  .phone .dot{width:26px;height:26px;border-radius:8px;background:var(--gold);margin-top:26px;}
+  .phone .ln{height:6px;border-radius:4px;background:var(--line);margin-top:10px;}
+  .phone .ln.w1{width:80%;}
+  .phone .ln.w2{width:60%;}
+  .phone .card{margin-top:16px;height:54px;border-radius:10px;background:var(--mist);border:1px solid var(--line);}
+
+  .float-chip{
+    position:absolute;display:flex;align-items:center;gap:8px;
+    background:var(--white);border:1px solid var(--line);border-radius:100px;
+    padding:9px 16px 9px 9px;box-shadow:var(--shadow);font-size:12.5px;font-weight:600;
+  }
+  .float-chip .ic{width:26px;height:26px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;}
+  .chip-1{top:6%;left:2%;}
+  .chip-2{top:38%;right:0;}
+  @media(max-width:599px){.float-chip{display:none;}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:76px 0;}
+  .section-head{max-width:600px;margin-bottom:48px;}
+  .section-head h2{font-size:30px;font-weight:800;line-height:1.2;}
+  @media(min-width:768px){.section-head h2{font-size:36px;}}
+  .section-head p{margin-top:14px;font-size:16px;}
+  .bg-mist{background:var(--mist);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;gap:40px;}
+  @media(min-width:900px){.about-grid{grid-template-columns:1fr 1fr;align-items:center;gap:64px;}}
+  .about-copy p{font-size:16.5px;}
+  .stat-grid{
+    margin-top:38px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+  }
+  .stat-card{
+    padding:22px;border-radius:var(--radius-md);border:1px solid var(--line);
+    background:var(--white);
+  }
+  .stat-card b{display:block;font-family:'Manrope';font-size:26px;font-weight:800;color:var(--blue);}
+  .stat-card span{font-size:13.5px;color:var(--navy-soft);}
+  .about-visual{
+    border-radius:var(--radius-lg);
+    background:linear-gradient(150deg,var(--blue),var(--blue-deep));
+    padding:36px;min-height:340px;position:relative;overflow:hidden;
+  }
+  .about-visual::after{
+    content:"";position:absolute;bottom:-60px;right:-60px;width:220px;height:220px;
+    border-radius:50%;background:rgba(251,184,46,0.25);
+  }
+  .about-visual .badge{
+    position:relative;z-index:1;display:inline-block;background:rgba(255,255,255,0.14);
+    color:var(--white);padding:7px 14px;border-radius:100px;font-size:12.5px;font-weight:600;
+  }
+  .about-visual h3{position:relative;z-index:1;color:var(--white);font-size:24px;margin-top:20px;max-width:280px;}
+  .about-visual p{position:relative;z-index:1;color:rgba(255,255,255,0.75);margin-top:12px;max-width:280px;}
+
+  /* ---------- TARGET CUSTOMER ---------- */
+  .target-grid{display:grid;gap:24px;}
+  @media(min-width:768px){.target-grid{grid-template-columns:1fr 1fr;}}
+  .target-card{
+    padding:38px 32px;border-radius:var(--radius-lg);
+    border:1px solid var(--line);background:var(--white);
+    display:flex;flex-direction:column;gap:18px;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .target-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent;}
+  .icon-box{
+    width:52px;height:52px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .icon-box.blue{background:rgba(36,85,214,0.1);}
+  .icon-box.gold{background:rgba(251,184,46,0.18);}
+  .target-card h3{font-size:21px;}
+  .target-card .btn{align-self:flex-start;margin-top:6px;}
+
+  /* ---------- SERVICES ---------- */
+  .service-grid{display:grid;gap:24px;}
+  @media(min-width:768px){.service-grid{grid-template-columns:repeat(3,1fr);}}
+  .service-card{
+    padding:32px 28px;border-radius:var(--radius-lg);
+    background:var(--white);border:1px solid var(--line);
+    display:flex;flex-direction:column;gap:16px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .service-card h3{font-size:20px;}
+  .service-card p{font-size:14.5px;}
+  .feat-list{margin-top:6px;display:flex;flex-direction:column;gap:9px;}
+  .feat-list li{
+    display:flex;align-items:center;gap:9px;font-size:14px;color:var(--navy);font-weight:500;
+  }
+  .feat-list li svg{flex-shrink:0;}
+
+  /* ---------- WHY CHOOSE US ---------- */
+  .why-grid{display:grid;gap:22px;grid-template-columns:1fr;}
+  @media(min-width:640px){.why-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.why-grid{grid-template-columns:repeat(4,1fr);}}
+  .why-card{padding:8px 4px;}
+  .why-card .icon-box{margin-bottom:18px;}
+  .why-card h3{font-size:17.5px;margin-bottom:8px;}
+  .why-card p{font-size:14px;}
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio-scroll{
+    display:flex;gap:20px;overflow-x:auto;padding-bottom:12px;
+    scroll-snap-type:x mandatory;margin:0 -24px;padding-left:24px;padding-right:24px;
+  }
+  @media(min-width:900px){
+    .portfolio-scroll{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;margin:0;padding:0;}
+  }
+  .folio-card{
+    flex:0 0 78%;scroll-snap-align:start;
+    border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);background:var(--white);
+  }
+  @media(min-width:600px){.folio-card{flex-basis:52%;}}
+  @media(min-width:900px){.folio-card{flex-basis:auto;}}
+  .folio-visual{
+    aspect-ratio:4/3;position:relative;
+    background:linear-gradient(150deg,var(--mist),#E9EFFC);
+    display:flex;align-items:center;justify-content:center;padding:24px;
+  }
+  .folio-visual .mini-window{
+    width:100%;border-radius:12px;background:var(--white);border:1px solid var(--line);
+    box-shadow:0 20px 30px -18px rgba(12,27,58,0.25);overflow:hidden;
+  }
+  .mini-window .top{display:flex;gap:5px;padding:9px 12px;border-bottom:1px solid var(--line);}
+  .mini-window .top i{width:7px;height:7px;border-radius:50%;background:var(--line);}
+  .mini-window .body{padding:14px;}
+  .mini-window .body .b1{height:8px;width:60%;border-radius:4px;background:var(--blue);margin-bottom:8px;}
+  .mini-window .body .b2{height:6px;width:90%;border-radius:4px;background:var(--line);margin-bottom:6px;}
+  .mini-window .body .b3{height:6px;width:75%;border-radius:4px;background:var(--line);margin-bottom:12px;}
+  .mini-window .body .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+  .mini-window .body .grid3 i{height:22px;border-radius:5px;background:var(--mist);}
+  .folio-info{padding:20px 22px 24px;}
+  .folio-info .tag{font-size:12px;font-weight:600;color:var(--blue);}
+  .folio-info h3{font-size:17px;margin-top:6px;}
+
+  /* ---------- PROCESS ---------- */
+  .process-list{display:grid;gap:0;position:relative;}
+  @media(min-width:900px){.process-list{grid-template-columns:repeat(4,1fr);gap:24px;}}
+  .process-step{
+    display:flex;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  @media(min-width:900px){
+    .process-step{flex-direction:column;gap:16px;padding:0;border-bottom:none;border-top:3px solid var(--line);padding-top:22px;}
+  }
+  .process-step:last-child{border-bottom:none;}
+  .process-num{
+    font-family:'Manrope';font-weight:800;font-size:22px;color:var(--gold);
+    flex-shrink:0;width:44px;
+  }
+  .process-step h3{font-size:17.5px;margin-bottom:6px;}
+  .process-step p{font-size:14px;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    border-radius:var(--radius-lg);
+    background:linear-gradient(135deg,var(--blue) 0%, var(--blue-deep) 100%);
+    padding:56px 32px;position:relative;overflow:hidden;
+    text-align:left;
+  }
+  @media(min-width:768px){.cta{padding:70px 64px;}}
+  .cta::before{
+    content:"";position:absolute;top:-80px;left:-80px;width:260px;height:260px;border-radius:50%;
+    background:rgba(251,184,46,0.18);
+  }
+  .cta::after{
+    content:"";position:absolute;bottom:-100px;right:-60px;width:300px;height:300px;border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .cta h2{position:relative;z-index:1;color:var(--white);font-size:30px;max-width:560px;line-height:1.25;}
+  @media(min-width:768px){.cta h2{font-size:38px;}}
+  .cta p{position:relative;z-index:1;color:rgba(255,255,255,0.8);margin-top:16px;max-width:480px;font-size:16px;}
+  .cta-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+  .cta .btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.35);}
+  .cta .btn-ghost:hover{border-color:var(--white);color:var(--white);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;gap:40px;}
+  @media(min-width:960px){.contact-grid{grid-template-columns:0.85fr 1.15fr;gap:60px;}}
+  .contact-info-card{
+    padding:34px 30px;border-radius:var(--radius-lg);background:var(--navy);color:var(--white);
+    display:flex;flex-direction:column;gap:24px;
+  }
+  .contact-info-card h3{color:var(--white);font-size:22px;}
+  .contact-info-card p{color:rgba(255,255,255,0.7);}
+  .contact-row{display:flex;align-items:center;gap:14px;}
+  .contact-row .icon-box{background:rgba(255,255,255,0.1);flex-shrink:0;}
+  .contact-row b{display:block;font-size:14.5px;font-weight:600;}
+  .contact-row span{font-size:13px;color:rgba(255,255,255,0.65);}
+
+  .form-card{
+    padding:32px 28px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--white);
+  }
+  @media(min-width:768px){.form-card{padding:40px;}}
+  .field-row{display:grid;gap:18px;}
+  @media(min-width:600px){.field-row.two{grid-template-columns:1fr 1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+  .field label{font-size:13.5px;font-weight:600;color:var(--navy);}
+  .field input,.field select,.field textarea{
+    padding:13px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--line);
+    font-family:inherit;font-size:14.5px;color:var(--navy);background:var(--mist);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--blue);background:var(--white);
+  }
+  .field textarea{resize:vertical;min-height:110px;}
+  .form-note{font-size:12.5px;color:var(--navy-soft);margin-top:10px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:56px 0 28px;}
+  .footer-top{display:flex;flex-direction:column;gap:32px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  @media(min-width:768px){.footer-top{flex-direction:row;justify-content:space-between;align-items:flex-start;}}
+  .footer-logo{display:flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--white);}
+  .footer-logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;color:var(--white);font-size:16px;font-weight:800;}
+  .footer-logo .mark span{color:var(--gold);}
+  .footer-tag{margin-top:10px;font-size:14px;max-width:280px;}
+  .footer-menu{display:flex;gap:32px;flex-wrap:wrap;}
+  .footer-menu a{font-size:14.5px;transition:color .2s ease;}
+  .footer-menu a:hover{color:var(--white);}
+  .footer-bottom{
+    display:flex;flex-direction:column;gap:12px;padding-top:24px;font-size:13px;
+  }
+  @media(min-width:768px){.footer-bottom{flex-direction:row;justify-content:space-between;}}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo"><span class="mark">In<span>.</span></span>InosifyDev</a>
+    <nav class="menu">
+      <a href="#beranda">Beranda</a>
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+    <a href="#kontak" class="btn btn-primary nav-cta">Konsultasi Gratis</a>
+    <button class="burger" id="burgerBtn" aria-label="Buka menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#beranda">Beranda</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#layanan">Layanan</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#kontak">Kontak</a>
+    <a href="#kontak" class="btn btn-primary">Konsultasi Gratis</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <div class="hero-glow"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Web & Mobile Apps Development</span>
+        <h1>Digital Solution<br>untuk Website & Mobile Apps</h1>
+        <p class="lead">Kami membantu UMKM, mahasiswa, dan bisnis membangun website serta aplikasi mobile yang modern, efektif, dan mudah digunakan.</p>
+        <div class="hero-actions">
+          <a href="#kontak" class="btn btn-primary">Konsultasi Gratis</a>
+          <a href="#portfolio" class="btn btn-ghost">Lihat Portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>50+</b><span>Project Selesai</span></div>
+          <div><b>30+</b><span>Client Puas</span></div>
+          <div><b>100%</b><span>Responsive Design</span></div>
+        </div>
+      </div>
+      <div class="device-scene">
+        <div class="float-chip chip-1">
+          <span class="ic">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#0C1B3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Deploy tanpa ribet
+        </div>
+        <div class="float-chip chip-2">
+          <span class="ic">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z" stroke="#0C1B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Loading cepat
+        </div>
+        <div class="laptop">
+          <div class="screen">
+            <div class="bar short"></div>
+            <div class="bar w1"></div>
+            <div class="bar w2"></div>
+            <div class="chip"><i></i><i></i><i></i></div>
+          </div>
+          <div class="base"></div>
+        </div>
+        <div class="phone">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="dot"></div>
+            <div class="ln w1"></div>
+            <div class="ln w2"></div>
+            <div class="card"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG KAMI -->
+  <section id="tentang">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">Tentang Kami</span>
+        <h2 style="font-size:32px;font-weight:800;line-height:1.25;">Solusi Digital untuk Bisnis Masa Kini</h2>
+        <p style="margin-top:18px;">InosifyDev adalah partner digital yang membantu bisnis, UMKM, dan individu menghadirkan solusi teknologi melalui website dan aplikasi mobile berkualitas — dari perencanaan, desain, hingga pengembangan yang siap dipakai.</p>
+        <div class="stat-grid">
+          <div class="stat-card"><b>50+</b><span>Project Selesai</span></div>
+          <div class="stat-card"><b>30+</b><span>Client</span></div>
+          <div class="stat-card"><b>100%</b><span>Responsive Design</span></div>
+          <div class="stat-card"><b>24/7</b><span>Support Berkelanjutan</span></div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <span class="badge">Inovasi Digital, Solusi Nyata</span>
+        <h3>Dari ide menjadi produk digital yang siap dipakai.</h3>
+        <p>Tim kami mendampingi setiap tahap — riset, desain, hingga development — supaya solusi digital Anda benar-benar terpakai.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARGET CUSTOMER -->
+  <section class="bg-mist">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Untuk Siapa</span>
+        <h2>Dibuat untuk Kebutuhan Anda</h2>
+        <p>Baik untuk mengembangkan bisnis maupun menyelesaikan tugas akademik, kami siap membantu.</p>
+      </div>
+      <div class="target-grid">
+        <div class="target-card">
+          <div class="icon-box blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 11h.01M15 11h.01M9 15h.01M15 15h.01" stroke="#2455D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Untuk UMKM</h3>
+          <p>Tingkatkan kepercayaan pelanggan dan jangkauan bisnis Anda dengan website profesional yang menarik dan mudah digunakan.</p>
+          <a href="#kontak" class="btn btn-primary">Mulai Bangun Website</a>
+        </div>
+        <div class="target-card">
+          <div class="icon-box gold">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 10L12 5 2 10l10 5 10-5z" stroke="#0C1B3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" stroke="#0C1B3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Untuk Mahasiswa</h3>
+          <p>Butuh website untuk tugas, skripsi, portfolio, atau project? Kami siap membantu membuat solusi digital terbaik.</p>
+          <a href="#kontak" class="btn btn-ghost">Konsultasi Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section id="layanan">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Layanan Kami</span>
+        <h2>Solusi Lengkap untuk Kebutuhan Digital</h2>
+        <p>Dari website hingga software khusus, kami mengerjakan produk digital yang siap digunakan dan mudah dikembangkan.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="icon-box blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#2455D6" stroke-width="1.8"/><path d="M3 9h18M8 21h8M12 18v3" stroke="#2455D6" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Website Development</h3>
+          <p>Membangun website modern, responsive, dan SEO friendly untuk kebutuhan bisnis maupun personal.</p>
+          <ul class="feat-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Company Profile Website</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Landing Page</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>E-Commerce</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom Website</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="icon-box gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="#0C1B3A" stroke-width="1.8"/><path d="M11 18h2" stroke="#0C1B3A" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Mobile Application</h3>
+          <p>Mengembangkan aplikasi Android dan iOS sesuai kebutuhan bisnis Anda.</p>
+          <ul class="feat-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>UI/UX Design</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Android Apps</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>iOS Apps</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom Features</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="icon-box blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 00-2 2v3m0 8v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3m0-8V5a2 2 0 00-2-2h-3" stroke="#2455D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="8" y="8" width="8" height="8" rx="1.5" stroke="#2455D6" stroke-width="1.8"/></svg>
+          </div>
+          <h3>Custom Software</h3>
+          <p>Solusi software khusus untuk membantu meningkatkan produktivitas bisnis.</p>
+          <ul class="feat-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dashboard System</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Management System</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2455D6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Database Integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="bg-mist">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Keunggulan</span>
+        <h2>Kenapa Pilih InosifyDev?</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="icon-box blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 5.2L20 9l-4 3.8.9 5.7L12 15.9 7.1 18.5 8 12.8 4 9l5.6-.8L12 3z" stroke="#2455D6" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Design Modern</h3>
+          <p>Website dengan tampilan profesional dan mengikuti trend teknologi terbaru.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon-box gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0C1B3A" stroke-width="1.7"/><path d="M21 21l-4.35-4.35" stroke="#0C1B3A" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+          <h3>SEO Friendly</h3>
+          <p>Struktur website optimal agar mudah ditemukan di mesin pencari.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon-box blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z" stroke="#2455D6" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Cepat & Aman</h3>
+          <p>Performa cepat dengan sistem yang aman dan stabil.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon-box gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="#0C1B3A" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Harga Terjangkau</h3>
+          <p>Solusi digital sesuai kebutuhan dan budget Anda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Portfolio</span>
+        <h2>Project yang Telah Kami Kerjakan</h2>
+        <p>Beberapa produk digital yang sudah kami bangun bersama client kami.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="portfolio-scroll">
+        <div class="folio-card">
+          <div class="folio-visual">
+            <div class="mini-window">
+              <div class="top"><i></i><i></i><i></i></div>
+              <div class="body"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="grid3"><i></i><i></i><i></i></div></div>
+            </div>
+          </div>
+          <div class="folio-info"><span class="tag">Website</span><h3>Company Profile Website</h3></div>
+        </div>
+        <div class="folio-card">
+          <div class="folio-visual">
+            <div class="mini-window">
+              <div class="top"><i></i><i></i><i></i></div>
+              <div class="body"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="grid3"><i></i><i></i><i></i></div></div>
+            </div>
+          </div>
+          <div class="folio-info"><span class="tag">UMKM</span><h3>UMKM Website</h3></div>
+        </div>
+        <div class="folio-card">
+          <div class="folio-visual">
+            <div class="mini-window">
+              <div class="top"><i></i><i></i><i></i></div>
+              <div class="body"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+            </div>
+          </div>
+          <div class="folio-info"><span class="tag">Landing Page</span><h3>Landing Page</h3></div>
+        </div>
+        <div class="folio-card">
+          <div class="folio-visual">
+            <div class="mini-window">
+              <div class="top"><i></i><i></i><i></i></div>
+              <div class="body"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="grid3"><i></i><i></i><i></i></div></div>
+            </div>
+          </div>
+          <div class="folio-info"><span class="tag">Mobile</span><h3>Mobile Application</h3></div>
+        </div>
+        <div class="folio-card">
+          <div class="folio-visual">
+            <div class="mini-window">
+              <div class="top"><i></i><i></i><i></i></div>
+              <div class="body"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="grid3"><i></i><i></i><i></i></div></div>
+            </div>
+          </div>
+          <div class="folio-info"><span class="tag">Dashboard</span><h3>Dashboard System</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-mist">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Cara Kerja</span>
+        <h2>Bagaimana Kami Bekerja</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-step">
+          <span class="process-num">01</span>
+          <div><h3>Konsultasi</h3><p>Diskusikan kebutuhan dan konsep project.</p></div>
+        </div>
+        <div class="process-step">
+          <span class="process-num">02</span>
+          <div><h3>Design</h3><p>Membuat desain UI/UX sesuai kebutuhan.</p></div>
+        </div>
+        <div class="process-step">
+          <span class="process-num">03</span>
+          <div><h3>Development</h3><p>Mengembangkan website atau aplikasi.</p></div>
+        </div>
+        <div class="process-step">
+          <span class="process-num">04</span>
+          <div><h3>Launch</h3><p>Project siap digunakan dan dikembangkan.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta reveal">
+        <h2>Wujudkan Ide Anda Menjadi Web & Apps yang Nyata</h2>
+        <p>Konsultasikan kebutuhan digital Anda bersama InosifyDev. Kami siap membantu membuat solusi teknologi terbaik.</p>
+        <div class="cta-actions">
+          <a href="https://instagram.com/inosify.digital" target="_blank" rel="noopener" class="btn btn-gold">DM Sekarang</a>
+          <a href="#kontak" class="btn btn-ghost">Konsultasi Gratis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Kontak</span>
+        <h2>Mari Diskusikan Project Anda</h2>
+        <p>Isi form di bawah atau hubungi kami langsung — tim kami akan merespons secepatnya.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-card reveal">
+          <div>
+            <h3>InosifyDev</h3>
+            <p style="margin-top:8px;">Partner digital untuk website, aplikasi mobile, dan solusi teknologi Anda.</p>
+          </div>
+          <div class="contact-row">
+            <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#FBB82E" stroke-width="1.7"/><path d="M2 6l10 7 10-7" stroke="#FBB82E" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <div><b>Email</b><span>inosify.digital@gmail.com</span></div>
+          </div>
+          <div class="contact-row">
+            <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#FBB82E" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="#FBB82E" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r="1.2" fill="#FBB82E"/></svg></div>
+            <div><b>Instagram</b><span>@inosify.digital</span></div>
+          </div>
+          <div class="contact-row">
+            <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15.5a2 2 0 01-2.2 2 18 18 0 01-7.9-2.8 17.7 17.7 0 01-5.4-5.4A18 18 0 013 3.7 2 2 0 015 1.5h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.4 2.1L9 9.3a14.4 14.4 0 005.7 5.7l1.3-1.2a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.7 2v3z" stroke="#FBB82E" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <div><b>Respon Cepat</b><span>Senin – Sabtu, 09.00 – 21.00</span></div>
+          </div>
+        </div>
+
+        <div class="form-card reveal">
+          <form id="contactForm">
+            <div class="field-row two">
+              <div class="field">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama" placeholder="Nama lengkap Anda" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+              </div>
+            </div>
+            <div class="field-row two">
+              <div class="field">
+                <label for="whatsapp">Nomor WhatsApp</label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="08xx xxxx xxxx" required>
+              </div>
+              <div class="field">
+                <label for="jenis">Jenis Project</label>
+                <select id="jenis" name="jenis" required>
+                  <option value="" disabled selected>Pilih jenis project</option>
+                  <option>Website Development</option>
+                  <option>Mobile Application</option>
+                  <option>Custom Software</option>
+                  <option>Lainnya</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="pesan">Pesan</label>
+              <textarea id="pesan" name="pesan" placeholder="Ceritakan kebutuhan project Anda..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Kirim Pesan</button>
+            <p class="form-note" id="formNote">Kami akan membalas dalam 1x24 jam melalui email atau WhatsApp.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="footer-logo"><span class="mark">In<span>.</span></span>InosifyDev</a>
+        <p class="footer-tag">Inovasi Digital, Solusi Nyata — partner pengembangan website, aplikasi mobile, dan digital solution.</p>
+      </div>
+      <div class="footer-menu">
+        <a href="#beranda">Home</a>
+        <a href="#layanan">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#kontak">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 InosifyDev. All Rights Reserved.</span>
+      <span>inosify.digital@gmail.com · @inosify.digital</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    burgerBtn.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => io.observe(el));
+
+  // Contact form (client-side only demo)
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    note.textContent = 'Terima kasih! Pesan Anda telah kami terima, tim InosifyDev akan segera menghubungi Anda.';
+    note.style.color = '#2455D6';
+    note.style.fontWeight = '600';
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
