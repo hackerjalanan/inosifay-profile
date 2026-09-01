@@ -162,11 +162,11 @@ header.nav.scrolled{box-shadow:0 2px 20px rgba(16,22,55,.08);}
 }
 .logo b{color:var(--blue-600);}
 .logo-mark{
-  width:36px;height:36px;
+  width:42px;height:42px;
   display:flex;align-items:center;justify-content:center;
   position:relative;flex-shrink:0;
 }
-.logo-mark svg{width:36px;height:36px;}
+.logo-mark img{width:100%;height:100%;object-fit:contain;display:block;}
 .nav-links{
   display:none;
   align-items:center;
@@ -440,7 +440,12 @@ header.nav.scrolled{box-shadow:0 2px 20px rgba(16,22,55,.08);}
   width:42px;height:42px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-family:'Space Grotesk',sans-serif;font-weight:600;color:#fff;font-size:15px;
+  line-height:1;
+  text-align:center;
 }
+
+/* Ensure avatar initials are visually centered */
+.avatar{line-height:42px;flex-shrink:0}
 .test-person h5{font-size:14.5px;font-weight:600;}
 .test-person span{font-size:12.5px;color:var(--slate-500);display:block;margin-top:2px;}
 
@@ -497,12 +502,7 @@ footer{background:var(--navy-900);color:rgba(255,255,255,.62);padding:64px 0 28p
   <div class="wrap nav-row">
     <a href="#beranda" class="logo">
       <span class="logo-mark">
-        <svg viewBox="0 0 40 40" fill="none">
-          <polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" fill="none" stroke="#2557E0" stroke-width="2.4"/>
-          <circle cx="20" cy="14" r="3" fill="#F5A623"/>
-          <path d="M14 29c0-4.4 2.8-7 6-7s6 2.6 6 7" stroke="#2557E0" stroke-width="2.4" stroke-linecap="round"/>
-          <path d="M20 22 L26 30" stroke="#F5A623" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
+        <img src="inosify.png" alt="InosifyDev logo">
       </span>
       Inosify<b>Dev</b>
     </a>
@@ -769,46 +769,58 @@ footer{background:var(--navy-900);color:rgba(255,255,255,.62);padding:64px 0 28p
     </div>
 
     <div class="test-grid reveal-stagger">
-      <div class="test-card rs-child">
-        <div class="stars">
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+        <div class="test-card rs-child">
+          <div class="stars" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+          </div>
+          <q>InosifyDev paham betul kebutuhan usaha kecil seperti kami. Website jadi lebih rapi dan pelanggan lebih mudah menemukan menu serta lokasi.</q>
+          <div class="test-person">
+            <span class="avatar" style="background:#2557E0; color: wheat;">AP</span>
+            <div>
+              <h5 >Andi Pratama</h5>
+              <span >Pemilik, Warung Nusantara</span>
+            </div>
+          </div>
         </div>
-        <q>InosifyDev paham betul kebutuhan usaha kecil seperti kami. Website jadi lebih rapi dan pelanggan lebih mudah menemukan menu serta lokasi.</q>
-        <div class="test-person">
-          <span class="avatar" style="background:#2557E0;">AP</span>
-          <div><h5>Andi Pratama</h5><span>Pemilik, Warung Nusantara</span></div>
+
+        <div class="test-card rs-child">
+          <div class="stars" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+          </div>
+          <q>Sebagai mahasiswa tingkat akhir saya dibantu penuh dari nol sampai sistem siap sidang. Komunikasinya jelas dan sabar menjawab revisi.</q>
+          <div class="test-person">
+            <span class="avatar" style="background:#F5A623;">RM</span>
+            <div>
+              <h5>Rina Maharani</h5>
+              <span>Mahasiswa, Sistem Informasi</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="test-card rs-child">
-        <div class="stars">
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-        </div>
-        <q>Sebagai mahasiswa tingkat akhir saya dibantu penuh dari nol sampai sistem siap sidang. Komunikasinya jelas dan sabar menjawab revisi.</q>
-        <div class="test-person">
-          <span class="avatar" style="background:#F5A623;">RM</span>
-          <div><h5>Rina Maharani</h5><span>Mahasiswa, Sistem Informasi</span></div>
-        </div>
-      </div>
-      <div class="test-card rs-child">
-        <div class="stars">
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-        </div>
-        <q>Harga sesuai dengan budget UMKM kami, tapi hasilnya tetap terlihat profesional. Pesanan lewat WhatsApp sekarang jauh lebih rapi.</q>
-        <div class="test-person">
-          <span class="avatar" style="background:#17244F;">BS</span>
-          <div><h5>Budi Santoso</h5><span>Pemilik, Toko Kreatif</span></div>
+
+        <div class="test-card rs-child">
+          <div class="stars" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+          </div>
+          <q>Harga sesuai dengan budget UMKM kami, tapi hasilnya tetap terlihat profesional. Pesanan lewat WhatsApp sekarang jauh lebih rapi.</q>
+          <div class="test-person">
+            <span class="avatar" style="background:#17244F;">BS</span>
+            <div>
+              <h5>Budi Santoso</h5>
+              <span>Pemilik, Toko Kreatif</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -836,12 +848,7 @@ footer{background:var(--navy-900);color:rgba(255,255,255,.62);padding:64px 0 28p
       <div>
         <a href="#beranda" class="logo foot-logo">
           <span class="logo-mark">
-            <svg viewBox="0 0 40 40" fill="none">
-              <polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" fill="none" stroke="#3E70F2" stroke-width="2.4"/>
-              <circle cx="20" cy="14" r="3" fill="#F5A623"/>
-              <path d="M14 29c0-4.4 2.8-7 6-7s6 2.6 6 7" stroke="#3E70F2" stroke-width="2.4" stroke-linecap="round"/>
-              <path d="M20 22 L26 30" stroke="#F5A623" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
+            <img src="inosify.png" alt="InosifyDev logo">
           </span>
           Inosify<b style="color:var(--amber-400);">Dev</b>
         </a>
